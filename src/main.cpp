@@ -8,8 +8,8 @@ Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
 #define EYE_WIDTH 30
 #define EYE_HEIGHT 50
 #define EYE_SPACING 80
-#define NUM_EYES 2
-#define BLINK_FRAMES 20
+
+#define BLINK_FRAMES 20.
 #define BLINK_DELAY 4
 #define OPEN_TIME_MIN 1000
 #define OPEN_TIME_MAX 4000
@@ -146,7 +146,7 @@ void loop() {
         std::max((int16_t)1, (int16_t)(EYE_HEIGHT * blinkProgress));
 
     clearBuffer();
-    for (int i = 0; i < NUM_EYES; i++) {
+    for (int i = 0; i < 2; i++) {
       bufferFillEllipse(eyePositions[i], eyeY, EYE_WIDTH, currentHeight,
                         EYE_COLOR);
     }
@@ -173,6 +173,7 @@ void loop() {
 
     delay(BLINK_DELAY);
   } else {
-    // probably need some kind of delay to prevent CPU going nuts
+    // prevent CPU going nuts
+    delay(OPEN_TIME_MIN - 100);
   }
 }
