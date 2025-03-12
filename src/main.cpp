@@ -20,14 +20,13 @@ Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
 #define EYE_COLOR ST77XX_WHITE
 #define BG_COLOR ST77XX_BLACK
 
-// Animation state
 int blinkState = 0;
-unsigned long lastBlinkTime = 0;
 bool isBlinking = false;
+unsigned long lastBlinkTime = 0;
 unsigned long openTime = OPEN_TIME_MIN;
 
-int16_t eyePositions[2];
 int16_t eyeY;
+int16_t eyePositions[2];
 
 uint16_t *buffer = NULL;
 int bufferWidth = 0;
@@ -35,7 +34,6 @@ int bufferHeight = 0;
 int bufferX = 0;
 int bufferY = 0;
 
-// Function to draw a filled ellipse to our buffer
 void bufferFillEllipse(int16_t x0, int16_t y0, int16_t rx, int16_t ry,
                        uint16_t color) {
   x0 = x0 - bufferX;
@@ -177,3 +175,4 @@ void loop() {
   } else {
     // probably need some kind of delay to prevent CPU going nuts
   }
+}
