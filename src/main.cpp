@@ -9,8 +9,8 @@ Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
 #define EYE_HEIGHT 50
 #define EYE_SPACING 80
 
-#define BLINK_FRAMES 20.
-#define BLINK_DELAY 4
+#define BLINK_FRAMES 20. 
+#define FRAME_DELAY 4
 #define OPEN_TIME_MIN 1000
 #define OPEN_TIME_MAX 4000
 
@@ -169,11 +169,13 @@ void loop() {
         Serial.println("Scheduling quick double-blink");
         openTime = 300;
       }
+
+      delay(openTime);
     }
 
-    delay(BLINK_DELAY);
+    delay(FRAME_DELAY);
   } else {
-    // prevent CPU going nuts
-    delay(OPEN_TIME_MIN - 100);
+    // prevent the cpu going nuts so when we are waiting only every 16ms
+    delay(FRAME_DELAY * 4);
   }
 }
